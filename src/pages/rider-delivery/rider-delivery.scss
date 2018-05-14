@@ -27,6 +27,7 @@ page-rider-delivery{
                 font-weight: bold;
                 padding-bottom: 10px;
                 border-bottom: 1px solid #ccc;
+                font-size: 1.8rem;
             }
             ion-badge.badge-md{
                 position: absolute;
@@ -48,7 +49,7 @@ page-rider-delivery{
         padding-bottom: 0 !important;
         table {
             text-align: center;
-            font-size: 2.25rem;
+            font-size: 1.8rem;
             th{
                 font-weight: normal;
                 color: #95989a;
@@ -57,7 +58,6 @@ page-rider-delivery{
             td {
                 color: #5e5e5e;
                 font-weight: 700;
-                font-size: 2.5rem;
             }
             th:last-child {
                 text-align: right;
@@ -104,6 +104,7 @@ page-rider-delivery{
             z-index: 999;
             position: relative;
             padding: 0 16px;
+            min-height: 130px;
         }
     }
 }
