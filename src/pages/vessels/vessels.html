@@ -3,7 +3,7 @@
         <button ion-button icon-only menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title text-center>Delivery Orders</ion-title>
+        <ion-title text-center>Manage Vessels</ion-title>
         <button ion-button icon-only class="filter" (click)="presentPopover($event)">
             <ion-icon name="ios-funnel-outline"></ion-icon>
         </button>
@@ -14,23 +14,23 @@
     <!-- Segment in content -->
     <ion-segment [(ngModel)]="displayType">
         <ion-segment-button value="today">
-            Today
+            Not Returned
         </ion-segment-button>
         <ion-segment-button value="completed">
-            Completed
+            Returned
         </ion-segment-button>
     </ion-segment>
     <div [ngSwitch]="displayType">
         <div class="today" *ngSwitchCase="'today'">
             <ion-card no-margin *ngFor="let item of today">
-                <ion-card-header (click)="openPage('RiderOrderSummaryPage')">
+                <ion-card-header (click)="slider(item,'vessels')">
                     <h1 class="orderId">{{item.order}}</h1>
-                    <ion-badge item-end *ngIf="item.status == 'ready'" class="ready">READY</ion-badge>
-                    <ion-badge item-end *ngIf="item.status == 'packing'" class="packing">PACKING</ion-badge>
+                    <!-- <ion-badge item-end *ngIf="item.status == 'ready'" class="ready">READY</ion-badge>
+                    <ion-badge item-end *ngIf="item.status == 'packing'" class="packing">PACKING</ion-badge> -->
                 </ion-card-header>
                 <ion-card-content>
                     <div class="slideHeader">
-                        <table width="100%" margin-bottom (click)="openPage('RiderOrderSummaryPage')">
+                        <table width="100%" margin-bottom  (click)="slider(item,'vessels')">
                             <thead>
                                 <tr>
                                     <th>Branch</th>
@@ -46,15 +46,11 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <ion-item>
-                            <ion-label>Mark as Delivered</ion-label>
-                            <ion-checkbox></ion-checkbox>
-                        </ion-item>
-                        <button ion-button icon-left small round class="reorder disable-hover" margin-bottom (click)="slider(item,'call')">
+                        <button ion-button icon-left small round class="reorder" margin-bottom (click)="slider(item,'call')">
                             <ion-icon name="md-call"></ion-icon>
                             CALL
                         </button>
-                        <button ion-button small round class="trackorder disable-hover" float-right icon-left (click)="slider(item,'location')">
+                        <button ion-button small round class="trackorder" float-right icon-left (click)="slider(item,'location')">
                             <ion-icon name="md-pin"></ion-icon>
                             LOCATION
                         </button>
@@ -63,15 +59,21 @@
                         <div *ngIf="item.sliderType == 'call'">
                             <h3>Would you like to make a call ?</h3>
                             <h1>{{item.phone}}</h1>
-                            <button ion-button small round class="reorder disable-hover" (click)="call(item.phone)">
+                            <button ion-button small round class="reorder" (click)="call(item.phone)">
                                 VOICE CALL
                             </button>
                         </div>
                         <div *ngIf="item.sliderType == 'location'">
                             <h3>Address</h3>
                             <h1 [innerHTML]="item.address"></h1>
-                            <button ion-button small round class="reorder disable-hover" (click)="direction(item.address)">
+                            <button ion-button small round class="reorder" (click)="direction(item.address)">
                                 DIRECTIONS
+                            </button>
+                        </div>
+                        <div *ngIf="item.sliderType == 'vessels'" class="vessels">
+                            <h1>Recieved the vessels for this order.</h1>
+                            <button ion-button small round class="reorder" (click)="slider(item,'vessels')">
+                                CONFIRM
                             </button>
                         </div>
                     </div>
@@ -82,7 +84,7 @@
             <ion-card no-margin *ngFor="let item of completed">
                 <ion-card-header>
                     <h1 class="orderId">{{item.order}}</h1>
-                    <ion-badge item-end class="completed">COMPLETED</ion-badge>
+                    <!-- <ion-badge item-end class="completed">COMPLETED</ion-badge> -->
                 </ion-card-header>
                 <ion-card-content>
                     <table width="100%" margin-bottom>

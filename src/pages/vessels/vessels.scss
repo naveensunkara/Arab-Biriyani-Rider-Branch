@@ -1,4 +1,4 @@
-page-rider-delivery{
+page-vessels{
     ion-toolbar{
         .toolbar-content{
             display: flex;
@@ -25,9 +25,9 @@ page-rider-delivery{
             position: relative;
             h1{
                 font-weight: bold;
+                font-size: 1.8rem;
                 padding-bottom: 10px;
                 border-bottom: 1px solid #ccc;
-                font-size: 1.8rem;
             }
             ion-badge.badge-md{
                 position: absolute;
@@ -77,6 +77,13 @@ page-rider-delivery{
             height: 130px;
             transition: all 0.3s;
             padding: 16px;
+            .vessels{
+                h1{
+                    color: white;
+                    font-weight: normal;
+                    width: 70%;
+                }
+            }
             h1{
                 color: white;
                 font-weight: bold;
@@ -105,9 +112,6 @@ page-rider-delivery{
             position: relative;
             padding: 0 16px;
             min-height: 130px;
-            .item.item-md .checkbox-md{
-                margin-right: 10px;
-            }
         }
     }
 }
